@@ -7,6 +7,7 @@ export default function App() {
         // Main Render Tag
         <div>
 
+<<<<<<< HEAD
             {/* Add first css attribute from jsx syntax */}
             <h3 style={{ color: 'green' }}>Function Component from Local Jsx </h3>
             <Nav />
@@ -15,5 +16,8 @@ export default function App() {
                 <Route path='/about' element={<About />} />
             </Routes>
         </div>
+=======
+        <h3 style={{ color: 'green' }}>Function Component from Local Jsx </h3>
+>>>>>>> 1cd351a (Update App.Jsx)
     )
 }

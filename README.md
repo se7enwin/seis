@@ -35,6 +35,7 @@ Version Content
    * public & src folder
    * App.jsx
    * index.js
+<<<<<<< HEAD
 * Modified Files
   * index.html
   * README.md
@@ -45,6 +46,17 @@ Version Content
    * Install node_modules
      > auto-generate: package-lock.json -> Node module detail 
    * index.html update: create Tag root
+=======
+   * index.html
+   * package-lock.json
+   * README.md
+* Development
+   * Json: Compatible version with ubuntu 18
+      >react, react-dom, redux, react-router-dom
+   * Install node_modules
+     > auto-generate: package-lock.json -> Node module detail
+   * index.html update: Tag root
+>>>>>>> 1cd351a (Update App.Jsx)
    * App.jsx Function Component from Jsx Local
       > Add css color from jsx
    * index.js render App.jsx on root tag of index.html
