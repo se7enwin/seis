@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 export default function App() {
 
     return (
+<<<<<<< HEAD
         // Main Render Tag
         <div>
 
@@ -17,6 +18,9 @@ export default function App() {
             </Routes>
         </div>
 =======
+=======
+        //Add first css attribute from jsx syntax
+>>>>>>> fe66863 (Update index.js)
         <h3 style={{ color: 'green' }}>Function Component from Local Jsx </h3>
 >>>>>>> 1cd351a (Update App.Jsx)
     )

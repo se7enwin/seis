@@ -58,7 +58,11 @@ Version Content
    * index.html update: Tag root
 >>>>>>> 1cd351a (Update App.Jsx)
    * App.jsx Function Component from Jsx Local
+<<<<<<< HEAD
       > Add css color from jsx
+=======
+     > Add css color from jsx
+>>>>>>> fe66863 (Update index.js)
    * index.js render App.jsx on root tag of index.html
    * Content in README.md file
    * Third branch uploaded
