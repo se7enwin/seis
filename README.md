@@ -35,8 +35,6 @@ Version Content
    * public & src folder
    * App.jsx
    * index.js
-<<<<<<< HEAD
-<<<<<<< HEAD
 * Modified Files
   * index.html
   * README.md
@@ -47,35 +45,8 @@ Version Content
    * Install node_modules
      > auto-generate: package-lock.json -> Node module detail 
    * index.html update: create Tag root
-=======
-   * index.html
-   * package-lock.json
-   * README.md
-=======
-* Modified Files
-  * index.html
-  * README.md
->>>>>>> d40b453 (Update README.md)
-* Development
-   * Json: Compatible version with ubuntu 18
-         >react, react-dom, redux, react-router-dom
-   * Install node_modules
-<<<<<<< HEAD
-     > auto-generate: package-lock.json -> Node module detail
-   * index.html update: Tag root
->>>>>>> 1cd351a (Update App.Jsx)
-   * App.jsx Function Component from Jsx Local
-<<<<<<< HEAD
-      > Add css color from jsx
-=======
-     > Add css color from jsx
->>>>>>> fe66863 (Update index.js)
-=======
-     > auto-generate: package-lock.json -> Node module detail 
-   * index.html update: create Tag root
    * App.jsx Function Component from Jsx Local
       > Add css color from jsx
->>>>>>> d40b453 (Update README.md)
    * index.js render App.jsx on root tag of index.html
    * Content in README.md file
    * Third branch uploaded
@@ -112,4 +83,3 @@ Version Content
   * First commit
   * Content in README.md file
   * First branch uploaded
-
