@@ -14,7 +14,7 @@ Version Content
 * Development
    * App.jsx : create state - fetch api - link for cors - props to Nav - render cards
    * SetNav.jsx : create state - handleSearch - Listeners: onChange & onClick - get list id - insert real id
-     > RealId: Get complete saint list; Map to magusList; Push real ids from map saint list onto array-Ids;
+     > RealId: Get complete magus list; Map to magusList; Push real ids from map magus list onto array-Ids;
      > Get user input text id number; Put user text onto sub index array-Ids returning real Id; Onclick listener(id);
    * Nav.jsx : props to SetNav   
    * Card: receives props, returns h3 with respective properties
