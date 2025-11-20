@@ -6,21 +6,19 @@ import Cards from './Components/Cards/Cards'
 export default function App() {
 
     // Assign first state
-    const [saint, setSaint] = useState([]);
+    const [magus, setMagus] = useState([]);
     // Query from Local Host
-    const api = 'www.saintseiyaapi.com/api/characters/';
+    const api = 'https://hp-api.onrender.com/api/character/';
     // Enable cors from localshot     
-    const cors = 'https://cors-anywhere.herokuapp.com/'
-
-
-
+    const cors = 'https://api.allorigins.win/raw?url='
 
 
     async function getApi(id) {
         try {
-            //Get saint
-            await fetch(`${cors}${api}${id}`).then(a => a.json().then(b => setSaint(old => [...old, b?.data])))
-
+            //Get magus
+            await fetch(`${cors}${api}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
+            //console.log('Que nos dice b: ', ...b)
+            console.log('Estado Aloja: ', magus)
         } catch (error) { console.log(error) }
     }
 
@@ -36,7 +34,7 @@ export default function App() {
             {/* Click and Enable Cors for a while */}
             <Link target="_blank" to="https://cors-anywhere.herokuapp.com/corsdemo"><h6>Enable Cors for a while</h6></Link>
             {/* Id for first query */}
-            <Cards saint={saint} />
+            <Cards magus={magus} />
             <Routes>
                 {/* url path to About.jsx*/}
                 <Route path='/about' element={<About />} />

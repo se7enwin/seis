@@ -2,22 +2,24 @@ import Card from '../Card/Card'
 export default function Cards(props) {
 
 
-    const { saint } = props;
-    console.log('Desde Cards: ', saint[0])
+    const { magus } = props;
+    console.log('Desde Cards: ', magus[0])
+
+    console.log('Mapa: ', magus?.map(a => console.log('Nombre: ', a.name)));
     return (
 
         <div>
             {
 
-                saint?.map(a =>
+                magus?.map(a =>
 
                     <Card
 
                         name={a.name}
                         image={a.image}
-                        rank={a.rank}
-                        techniques={a.techniques}
-                        constellation={a.constellation}
+                        house={a.house}
+                        wand={a.wand}
+                        ancestry={a.ancestry}
 
 
                     />

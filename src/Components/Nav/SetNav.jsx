@@ -7,7 +7,7 @@ export default function SetNav(props) {
     // Full List ids
     const ids = [];
     // Api url
-    const apiList = 'www.saintseiyaapi.com/api/characters?limit=5&page=1';
+    const apiList = 'https://hp-api.onrender.com/api/characters';
     // Get json from api
     if (fullList[0] == undefined) { getList(); console.log('Ids: ', ids); }
     // Get json from api
@@ -16,25 +16,25 @@ export default function SetNav(props) {
 
         // Get full list api
 
-        await fetch(`${props.cors}${apiList}`).then(c => c.json().then(d => setfullList(d.data.characters)));
-
+        await fetch(`${props.cors}${apiList}`).then(c => c.json().then(d => setfullList(d)));
+        console.log('Datos: ', fullList)
 
     }
     /* Push full id list on array*/
-    fullList?.map(s => { ids.push(s['_id']) })
-    console.log('Ids: ', ids);
+    fullList?.map(s => { ids.push(s['id']) })
+    console.log('Ids Ingresado: ', ids);
 
     // Handle -  Save data input on state
     function handleSearch(event) {
         //Return real id from subindice array
         setId(ids[((event.target.value) - 1)])
-        console.log('Id: ', id)
+        console.log('Ingreso Id: ', id)
 
     }
     return (
         <div>
             {/* Input listener - active handler */}
-            <input type='search' placeholder='Enter Saint - 1 to 5' onChange={handleSearch} />
+            <input type='search' placeholder='Enter Magus - 1 to 21' onChange={handleSearch} />
             {/* Onclick listener - active getApi */}
             <button onClick={() => { if (id !== '') { props.getApi(id) } }}>Search</button>
         </div>
