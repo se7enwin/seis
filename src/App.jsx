@@ -10,17 +10,15 @@ export default function App() {
     // Query from Local Host
     const api = 'https://hp-api.onrender.com/api/character/';
     // Enable cors from localshot     
-    const cors = 'https://api.allorigins.win/raw?url='
+    const cors = 'https://corsproxy.io/?'
 
 
     async function getApi(id) {
-        try {
+       
             //Get magus
             await fetch(`${cors}${api}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
-            //console.log('Que nos dice b: ', ...b)
-            console.log('Estado Aloja: ', magus)
-        } catch (error) { console.log(error) }
-    }
+                       
+            }
 
 
 
@@ -32,7 +30,7 @@ export default function App() {
             <h3 style={{ color: 'green' }}>Function Component from Local Jsx </h3>
             <Nav getApi={getApi} cors={cors} />
             {/* Click and Enable Cors for a while */}
-            <Link target="_blank" to="https://cors-anywhere.herokuapp.com/corsdemo"><h6>Enable Cors for a while</h6></Link>
+            <Link target="_blank" to="https://corsproxy.io/?"><h6>Cors Link Web Page</h6></Link>
             {/* Id for first query */}
             <Cards magus={magus} />
             <Routes>
