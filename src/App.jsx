@@ -13,10 +13,10 @@ export default function App() {
     const cors = 'https://corsproxy.io/?'
 
 
-    async function getApi(id) {
+     function getApi(id) {
        
             //Get magus
-            await fetch(`${cors}${api}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
+             fetch(`${cors}${api}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
                        
             }
 
