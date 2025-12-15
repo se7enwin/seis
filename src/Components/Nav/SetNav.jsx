@@ -1,17 +1,18 @@
 import { useState } from 'react';
 export default function SetNav(props) {
 
-    const [id, setId] = useState('');
-    // FullList state 
+     // FullList state 
     const [fullList, setfullList] = useState([]);
+    // Input Id
+    const [id, setId] = useState('');
+     // Api list url
+    const apiList = 'https://hp-api.onrender.com/api/characters';
     // Full List ids
     const ids = [];
-    // Api url
-    const apiList = 'https://hp-api.onrender.com/api/characters';
-    // Get json from api
+   
+    // Conditional
     if (fullList[0] == undefined) { getList(); console.log('Ids: ', ids); }
     // Get json from api
-
     async function getList() {
 
         // Get full list api
