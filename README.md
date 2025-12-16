@@ -19,8 +19,8 @@ Version Content
    * App.jsx : reemplace url with env - assign ids on tags 
    * css-dom.js: hide ids warmUpHtml - main background - update title
      > WarmUpHtml: id one,two,three,four (syntax examples)
-   * Card: add id to tag
-   * Cards: add id to tag - first letter in capital letters - [{{},{},{},{},[{wood},{core},{length}]}] 
+   * Cards: add id to tag
+   * Card: add id to tag - first letter in capital letters - [{{},{},{},{},[{wood},{core},{length}]}] 
      >wand array pair  
    * SetNav: add it to tag 
    * styleslynk.css: styles to Cards, Card, img, five, Nav, input
