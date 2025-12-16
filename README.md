@@ -4,7 +4,7 @@ Version Content
 * New Files
   * img folder
   * Background-1.jpg
-    > From: https://www.saintseiya.com.es/
+    > From: https://alphacoders.com/harry-potter-wallpapers
     
 * Modified Files
   * .env 
@@ -47,7 +47,7 @@ Version Content
      > RealId: getCompleteSaintList mapToList pushRealIdOnArray getInputNumber ReturnRealId from input-subIndexArray
    * Nav.jsx : props to SetNav   
    * Card: receives props, returns h3 with respective properties
-     > name image constellation techniques rank
+     > name image house ancentry wand
    * Cards: receive props, render Card - attach properties
    * Content in README.md file
    * Fifth branch uploaded
