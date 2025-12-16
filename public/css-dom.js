@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Main background
     const body = document.querySelector('body');
     body.id = 'main';
-    body.setAttribute('style', 'background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),url("./Img/Background-1.jpg"); background-Size: cover;   background-position: center;background-repeat: no-repeat;background-attachment: fixed')
+    body.setAttribute('style', 'background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),url("./Img/Background-1.png"); background-Size: cover;   background-position: center;background-repeat: no-repeat;background-attachment: fixed;')
     // Update title
-    document.querySelector('title').text = 'SaintSeiya';
+    document.querySelector('title').text = 'Harry Potter';
 
 })
 

@@ -1,20 +1,17 @@
-export default function Card({ name, image, constellation, techniques, rank }) {
+export default function Card({ name, image, house, wand, ancestry }) {
 
-    console.log('name: ', name);
-    console.log('techniques: ', techniques);
+
     return (
 
         <span id='Card'>
 
-            {/*First letter in capital letters */}
-            <p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
+
+            <p id="name">{name}</p>
             <img id='img' src={image} />
-            {/*First letter in capital letters */}
-            <span id='constellation'>{constellation.charAt(0).toUpperCase() + constellation.slice(1)}</span>
-            {/*Only first subindex of array - First letter in capital letters */}
-            <span id='techniques'>{techniques[0].charAt(0).toUpperCase() + techniques[0].slice(1)}</span>
-            {/*First letter in capital letters */}
-            <span id='rank'>{rank.charAt(0).toUpperCase() + rank.slice(1)}</span>
+            <div id='house'>{house}</div>
+            <div id='ancestry' display='inline'>{ancestry.charAt(0).toUpperCase() + ancestry.slice(1)}</div>
+            <hr />
+            <table id='magic' border='1' cellSpacing="0"><caption>MagicWand</caption><thead><tr><th>Wood</th><th>Core</th><th>Length</th> </tr></thead><tbody><tr><td>{wand.wood.charAt(0).toUpperCase() + wand.wood.slice(1)}</td><td>{wand.core.charAt(0).toUpperCase() + wand.core.slice(1)}</td><td>{wand.length}</td></tr></tbody></table>
 
         </span>
 
@@ -24,5 +21,4 @@ export default function Card({ name, image, constellation, techniques, rank }) {
     )
 
 }
-
 

@@ -34,7 +34,7 @@
     padding: 8px;
     margin-bottom: 16px;
     width: 300px;
-    height: 500px;
+    height: 600px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(215, 48, 48, 0.487);
     background-color: rgba(123, 133, 7, 0.4);
@@ -43,6 +43,7 @@
 #img {
     width: 300px;
     height: 400px;
+    opacity: 0.75;
 }
 
 
@@ -71,11 +72,16 @@
     width: 132px;
 }
 
-#constellation {
+#name {
+
+    font-size: 23px;
+}
+
+#house {
     color: blue;
 }
 
-#techniques {
+#ancestry {
     color: yellow;
 }
 

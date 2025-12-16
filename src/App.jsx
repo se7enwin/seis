@@ -6,36 +6,30 @@ import Cards from './Components/Cards/Cards'
 export default function App() {
 
     // Assign first state
-    const [saint, setSaint] = useState([]);
-    // Query from Local Host
-    const api = 'www.saintseiyaapi.com/api/characters/';
-    // Enable cors from localshot     
-    const cors = 'https://cors-anywhere.herokuapp.com/'
+    const [magus, setMagus] = useState([]);
 
-
-
-
-
+    // Obtain character from id
     async function getApi(id) {
         try {
-            //Get saint
-            await fetch(`${process.env.REACT_APP_API_URL}${id}`).then(a => a.json().then(b => setSaint(old => [...old, b?.data])))
+            //Get magus
+            await fetch(`${process.env.REACT_APP_API_URL_ONE}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
+
 
         } catch (error) { console.log(error) }
     }
-
 
     return (
         <div>
 
             {/* Add first css attribute from jsx syntax */}
             <h3 id='five' style={{ color: 'green' }}>Function Component from Local Jsx </h3>
-            <Link target="_blank" to="https://cors-anywhere.herokuapp.com/corsdemo"><span>Enable Cors for a while</span></Link>
+            <Link target="_blank" to="https://github.com/gnuns/allOrigins"><span>Cors web page</span></Link>
             {/*Render Nav - Attach props */}
-            <Nav getApi={getApi} cors={cors} />
+            <Nav getApi={getApi} />
             {/*Render Cards - Attach props */}
-            <Cards saint={saint} />
+            {/* <Cards magus={magus} /> */}
             <Routes>
+                <Route path='/' element={<Cards magus={magus} />} />
                 {/* url path to About.jsx*/}
                 <Route path='/about' element={<About />} />
             </Routes>
