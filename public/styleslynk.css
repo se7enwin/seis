@@ -14,6 +14,7 @@
     box-shadow: 2px 2px 8px burlywood;
 }
 
+
 #Cards {
 
     margin-top: -10px;
@@ -83,8 +84,4 @@
 
 #ancestry {
     color: yellow;
-}
-
-#rank {
-    color: red;
 }
