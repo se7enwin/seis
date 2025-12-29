@@ -1,5 +1,6 @@
 import Nav from "./Components/Nav/Nav";
 import About from "./Components/About/About"
+import Detail from "./Components/Detail/Detail"
 import { Route, Routes, Link } from 'react-router-dom';
 import { useState } from 'react';
 import Cards from './Components/Cards/Cards'
@@ -32,7 +33,10 @@ export default function App() {
                 <Route path='/' element={<Cards magus={magus} />} />
                 {/* url path to About.jsx*/}
                 <Route path='/about' element={<About />} />
+                <Route path='/detail/:id' element={<Detail />} />
             </Routes>
         </div>
     )
 }
+
+

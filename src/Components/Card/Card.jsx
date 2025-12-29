@@ -1,12 +1,15 @@
-export default function Card({ name, image, house, wand, ancestry }) {
+import { Link } from 'react-router-dom';
+
+export default function Card({ name, image, house, wand, ancestry, id }) {
 
 
     return (
 
         <span id='Card'>
 
-
-            <p id="name">{name}</p>
+            <Link to={`/detail/${id}`}>
+                <p id="name">{name}</p>
+            </Link>
             <img id='img' src={image} />
             <div id='house'>{house}</div>
             <div id='ancestry' display='inline'>{ancestry.charAt(0).toUpperCase() + ancestry.slice(1)}</div>
