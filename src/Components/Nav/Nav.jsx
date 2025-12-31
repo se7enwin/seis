@@ -6,6 +6,7 @@ export default function Nav(props) {
         <div>
             {/* Render setNav - send prop*/}
             <SetNav getApi={props.getApi} cors={props.cors} />
+
         </div>
     )
 

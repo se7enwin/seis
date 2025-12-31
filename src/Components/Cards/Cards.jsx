@@ -25,6 +25,7 @@ export default function Cards(props) {
                         wand={a.wand}
                         ancestry={a.ancestry}
                         id={a.id}
+                        key={a.id}
 
 
                     />

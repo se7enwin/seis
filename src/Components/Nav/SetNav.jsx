@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom"
+
 export default function SetNav(props) {
 
     const [id, setId] = useState('');
@@ -34,10 +36,17 @@ export default function SetNav(props) {
     }
     return (
         <div id='Nav'>
+            <Link to='/'>
+                <span>Home</span>
+            </Link>
             {/* Input listener - active handler */}
             <input id='input' type='search' placeholder='Enter Magus - 1 to 5' onChange={handleSearch} />
             {/* Onclick listener - active getApi */}
             <button onClick={() => { if (id !== '') { props.getApi(id) } }}>Search</button>
+            <Link to='/favorites'>
+                <span>Favorites</span>
+            </Link>
+
         </div>
     )
 

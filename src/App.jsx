@@ -1,19 +1,26 @@
 import Nav from "./Components/Nav/Nav";
 import About from "./Components/About/About"
 import Detail from "./Components/Detail/Detail"
+import Cards from './Components/Cards/Cards'
+import Favorites from "./Components/Favorites/Favorites";
 import { Route, Routes, Link } from 'react-router-dom';
 import { useState } from 'react';
-import Cards from './Components/Cards/Cards'
 export default function App() {
 
     // Assign first state
     const [magus, setMagus] = useState([]);
 
+
     // Obtain character from id
     async function getApi(id) {
         try {
             //Get magus
-            await fetch(`${process.env.REACT_APP_API_URL_ONE}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
+            const igual = magus.find(ele => ele.id == id)
+            if (igual) {
+                return window.alert('El personaje ya está seleccionado');
+            }
+            else
+                await fetch(`${process.env.REACT_APP_API_URL_ONE}${id}`).then(a => a.json().then(b => setMagus(old => [...old, ...b])))
 
 
         } catch (error) { console.log(error) }
@@ -34,6 +41,7 @@ export default function App() {
                 {/* url path to About.jsx*/}
                 <Route path='/about' element={<About />} />
                 <Route path='/detail/:id' element={<Detail />} />
+                <Route path='/favorites' element={<Favorites />} />
             </Routes>
         </div>
     )

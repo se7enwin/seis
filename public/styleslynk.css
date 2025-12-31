@@ -83,5 +83,9 @@
 }
 
 #ancestry {
+    color: red;
+}
+
+#magic {
     color: yellow;
 }
