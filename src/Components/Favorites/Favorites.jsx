@@ -45,7 +45,7 @@ export default function Favorites(props) {
                 image={elem.image}
                 wand={elem.wand}
                 id={elem.id}
-            /*onClose={() => alert('Para elminar click en corazon')} */
+                onClose={() => alert('Para elminar click en corazon')}
             />
 
         ))}
