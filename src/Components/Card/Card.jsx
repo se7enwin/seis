@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../redux/actions/index';
-//import styles from './Card.module.css'
+import styles from './Card.module.css'
 
 // function Card({ name, image, house, wand, ancestry, id, addFavorite, removeFavorite, myFavorites }) {
 
@@ -92,7 +92,8 @@ function Card({
     id,
     addFavorite,
     removeFavorite,
-    myFavorites
+    myFavorites,
+    onClose
 }) {
 
     const isFav = myFavorites.some(fav => fav.id === id);
@@ -114,6 +115,7 @@ function Card({
             <button onClick={handleFavorite}>
                 {isFav ? "❤️" : "💟"}
             </button>
+            <button onClick={onClose} className={styles.closeButton}>X</button>
 
             <img id='img' src={image} />
             <div id='house'>{house}</div>

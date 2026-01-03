@@ -26,6 +26,11 @@ export default function App() {
         } catch (error) { console.log(error) }
     }
 
+    function onClose(id) {
+
+        setMagus(magus.filter((mg) => mg.id !== id));
+
+    }
     return (
         <div>
 
@@ -37,7 +42,7 @@ export default function App() {
             {/*Render Cards - Attach props */}
             {/* <Cards magus={magus} /> */}
             <Routes>
-                <Route path='/' element={<Cards magus={magus} />} />
+                <Route path='/' element={<Cards magus={magus} onClose={onClose} />} />
                 {/* url path to About.jsx*/}
                 <Route path='/about' element={<About />} />
                 <Route path='/detail/:id' element={<Detail />} />

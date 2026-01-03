@@ -2,7 +2,7 @@ import Card from '../Card/Card'
 export default function Cards(props) {
 
 
-    const { magus } = props;
+    const { magus,onClose } = props;
     console.log('Desde Cards: ', magus[0])
 
     // if (!magus || magus.length === 0) {
@@ -26,6 +26,7 @@ export default function Cards(props) {
                         ancestry={a.ancestry}
                         id={a.id}
                         key={a.id}
+                        onClose={() => onClose(a.id)}
 
 
                     />
