@@ -1,0 +1,91 @@
+#three,
+#four {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 270px;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: burlywood;
+    border: 1px dotted yellow;
+    border-radius: 10%;
+    box-shadow: 2px 2px 8px burlywood;
+}
+
+
+#Cards {
+
+    margin-top: -10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+#Card {
+
+    display: flex;
+    /* position:relative; */
+
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(236, 76, 13, 0.575);
+    padding: 8px;
+    margin-bottom: 16px;
+    width: 300px;
+    height: 600px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(215, 48, 48, 0.487);
+    background-color: rgba(123, 133, 7, 0.4);
+}
+
+#img {
+    width: 300px;
+    height: 400px;
+    opacity: 0.75;
+}
+
+
+#five {
+
+    display: none;
+
+}
+
+#Nav {
+
+
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    bottom: 0px;
+    height: 43px;
+    width: 95vw;
+    flex-direction: row;
+    padding: 6px;
+    background-color: rgba(8, 34, 3, 0.4);
+}
+
+#input {
+    background-color: rgba(8, 34, 3, 0.4);
+    width: 132px;
+}
+
+#name {
+
+    font-size: 23px;
+}
+
+#house {
+    color: blue;
+}
+
+#ancestry {
+    color: red;
+}
+
+#magic {
+    color: yellow;
+}

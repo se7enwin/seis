@@ -1,0 +1,4 @@
+# Node Libraries Folder
+node_modules
+# API Keys Files
+.env
