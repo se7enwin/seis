@@ -2,9 +2,9 @@ import Card from '../Card/Card'
 export default function Cards(props) {
 
 
-    const { magus,onClose } = props;
+    const { magus,onClose,userLogin,access,register,setRegister } = props;
     console.log('Desde Cards: ', magus[0])
-
+    setRegister(false);
     // if (!magus || magus.length === 0) {
     //              return <h3 style={{ color: 'red', textAlign: 'center' }}>Sin Personajes</h3>;
     //          }
@@ -27,6 +27,7 @@ export default function Cards(props) {
                         id={a.id}
                         key={a.id}
                         onClose={() => onClose(a.id)}
+                        userLogin={userLogin}
 
 
                     />

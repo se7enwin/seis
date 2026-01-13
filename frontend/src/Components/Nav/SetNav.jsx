@@ -36,7 +36,7 @@ export default function SetNav(props) {
     }
     return (
         <div id='Nav'>
-            <Link to='/'>
+            <Link to='/home'>
                 <span>Home</span>
             </Link>
             {/* Input listener - active handler */}
@@ -46,6 +46,7 @@ export default function SetNav(props) {
             <Link to='/favorites'>
                 <span>Favorites</span>
             </Link>
+            <button type="button" onClick={props.logOut}>LogOut</button>
 
         </div>
     )

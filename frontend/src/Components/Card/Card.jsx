@@ -93,18 +93,56 @@ function Card({
     addFavorite,
     removeFavorite,
     myFavorites,
-    onClose
+    onClose,
+    userLogin
 }) {
 
-    const isFav = myFavorites.some(fav => fav.id === id);
+    //const isFav = myFavorites.some(fav => fav.id === id);
+    const [isFav, setFav] = useState(false);
+    const userId = userLogin;
+    console.log('StarRender - isFav= ' + isFav)
+    console.log('User Fijo ?: ', userId)
+    //console.log('Ancestry = ' + ancestry)
+
+
 
     function handleFavorite() {
+
+        console.log('Se Activa Boton - isFav= ' + isFav)
+        console.log('Character = ' + name + ' Id:' + id)
+
         if (isFav) {
-            removeFavorite(id);
+            console.log('Desde isFav removeFavorite - userLogin: ', userId)
+            setFav(false);
+            removeFavorite({ id, userId });
+            console.log('EliminaCharacter')
         } else {
-            addFavorite({ name, image, house, wand, ancestry, id });
+
+            console.log('Desde isFav addFavorite - userLogin: ', userId)
+            addFavorite({ name, house, wand, image, ancestry, id, userId }); // aqui agregar id usuario
+            setFav(true);
+            console.log('AgregaCharacter')
+
         }
+        console.log('Finaliza Boton - isFav= ' + isFav)
+
     }
+    console.log('EndRender  - isFav= ' + isFav);
+    console.log(myFavorites);
+
+    // eslint-disable-next-line 
+    // Evita al renderizar white heart
+    useEffect(() => {
+        myFavorites.forEach((fav) => {
+            if (fav.id === id) {
+                setFav(true);
+                console.log('DesdeUseEffect - isFav= ' + isFav + ' - Character: ' + name)
+
+            }
+        });
+
+        // eslint-disable-next-line
+    }, [myFavorites]);
 
     return (
         <span id='Card'>

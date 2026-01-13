@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Favorite extends Model {
+  class extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,24 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  }
-  Favorite.init({
+  }.init({
     name: DataTypes.STRING,
     house: DataTypes.STRING,
     wand: DataTypes.JSONB,
     image: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    ancestry: DataTypes.STRING,
-    id: {
-      type: DataTypes.UUID, // O el tipo que envíes desde el front
-      primaryKey: true,    // Indica que es la llave primaria
-      allowNull: false,    // No puede ser nulo
-      autoIncrement: false // Opcional, pero refuerza que NO es automático
-    }
-
+    ancestry: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Favorite',
+    modelName: '',
   });
-  return Favorite;
+  return;
 };

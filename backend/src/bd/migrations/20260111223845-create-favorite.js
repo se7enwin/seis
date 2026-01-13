@@ -12,10 +12,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      origin: {
+      house: {
         type: Sequelize.STRING
       },
-      species: {
+      wand: {
         type: Sequelize.STRING
       },
       image: {
@@ -24,9 +24,8 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      status: {
-        type: Sequelize.ENUM('Alive', 'Dead', 'unknown'),
-        allowNull: false
+      ancestry: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

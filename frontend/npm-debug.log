@@ -1,0 +1,94 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'axios' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData axios
+8 silly fetchNamedPackageData axios
+9 silly mapToRegistry name axios
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/axios
+13 verbose request uri https://registry.npmjs.org/axios
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 17:38:40
+16 verbose request using bearer token for auth
+17 verbose request id 34080961040d4d65
+18 verbose etag W/"d8df7410e641b6d510e1a673fe06ef2a"
+19 verbose lastModified Tue, 04 Nov 2025 20:01:22 GMT
+20 http request GET https://registry.npmjs.org/axios
+21 http 304 https://registry.npmjs.org/axios
+22 verbose headers { date: 'Sat, 10 Jan 2026 20:38:41 GMT',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   server: 'cloudflare',
+22 verbose headers   'cf-ray': '9bbefaba1ff97831-SCL',
+22 verbose headers   'cf-cache-status': 'HIT',
+22 verbose headers   'access-control-allow-origin': '*',
+22 verbose headers   age: '229',
+22 verbose headers   'cache-control': 'public, max-age=300',
+22 verbose headers   etag: '"d8df7410e641b6d510e1a673fe06ef2a"',
+22 verbose headers   'last-modified': 'Tue, 04 Nov 2025 20:01:22 GMT',
+22 verbose headers   vary: 'Accept-Encoding',
+22 verbose headers   'set-cookie':
+22 verbose headers    [ '_cfuvid=t3yx9ucDEL6.iT_WjJl9QWpJRm2AqDnbwSeQgXqC1rs-1768077521000-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ] }
+23 silly get cb [ 304,
+23 silly get   { date: 'Sat, 10 Jan 2026 20:38:41 GMT',
+23 silly get     connection: 'keep-alive',
+23 silly get     server: 'cloudflare',
+23 silly get     'cf-ray': '9bbefaba1ff97831-SCL',
+23 silly get     'cf-cache-status': 'HIT',
+23 silly get     'access-control-allow-origin': '*',
+23 silly get     age: '229',
+23 silly get     'cache-control': 'public, max-age=300',
+23 silly get     etag: '"d8df7410e641b6d510e1a673fe06ef2a"',
+23 silly get     'last-modified': 'Tue, 04 Nov 2025 20:01:22 GMT',
+23 silly get     vary: 'Accept-Encoding',
+23 silly get     'set-cookie':
+23 silly get      [ '_cfuvid=t3yx9ucDEL6.iT_WjJl9QWpJRm2AqDnbwSeQgXqC1rs-1768077521000-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ] } ]
+24 verbose etag https://registry.npmjs.org/axios from cache
+25 verbose get saving axios to /home/ariel/.npm/registry.npmjs.org/axios/.cache.json
+26 silly install normalizeTree
+27 silly loadCurrentTree Finishing
+28 silly loadIdealTree Starting
+29 silly install loadIdealTree
+30 silly cloneCurrentTree Starting
+31 silly install cloneCurrentTreeToIdealTree
+32 silly cloneCurrentTree Finishing
+33 silly loadShrinkwrap Starting
+34 silly install loadShrinkwrap
+35 silly loadShrinkwrap Finishing
+36 silly loadAllDepsIntoIdealTree Starting
+37 silly install loadAllDepsIntoIdealTree
+38 verbose stack Error: Missing required argument #1
+38 verbose stack     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+38 verbose stack     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+38 verbose stack     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+38 verbose stack     at /usr/share/npm/lib/install/deps.js:190:5
+38 verbose stack     at /usr/share/npm/node_modules/slide/lib/async-map.js:52:35
+38 verbose stack     at Array.forEach (<anonymous>)
+38 verbose stack     at /usr/share/npm/node_modules/slide/lib/async-map.js:52:11
+38 verbose stack     at Array.forEach (<anonymous>)
+38 verbose stack     at asyncMap (/usr/share/npm/node_modules/slide/lib/async-map.js:51:8)
+38 verbose stack     at exports.loadRequestedDeps (/usr/share/npm/lib/install/deps.js:188:3)
+39 verbose cwd /home/ariel/Documentos/IT/FullStack/Mini/MiniProyectos/seis/frontend
+40 error Linux 6.1.25-060125-generic
+41 error argv "/usr/bin/node" "/usr/bin/npm" "install" "axios"
+42 error node v8.10.0
+43 error npm  v3.5.2
+44 error code EMISSINGARG
+45 error typeerror Error: Missing required argument #1
+45 error typeerror     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+45 error typeerror     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+45 error typeerror     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+45 error typeerror     at /usr/share/npm/lib/install/deps.js:190:5
+45 error typeerror     at /usr/share/npm/node_modules/slide/lib/async-map.js:52:35
+45 error typeerror     at Array.forEach (<anonymous>)
+45 error typeerror     at /usr/share/npm/node_modules/slide/lib/async-map.js:52:11
+45 error typeerror     at Array.forEach (<anonymous>)
+45 error typeerror     at asyncMap (/usr/share/npm/node_modules/slide/lib/async-map.js:51:8)
+45 error typeerror     at exports.loadRequestedDeps (/usr/share/npm/lib/install/deps.js:188:3)
+46 error typeerror This is an error with npm itself. Please report this error at:
+46 error typeerror     <http://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]

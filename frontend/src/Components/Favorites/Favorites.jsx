@@ -4,8 +4,9 @@ import { filterCards, orderCards } from '../../redux/actions';
 import { useState } from 'react';
 
 export default function Favorites(props) {
-    console.log(props.myFavorites);
-
+    //console.log(props.myFavorites);
+    const { userLogin } = props;
+    console.log('UserLogin Desde Favorites: ', userLogin);
     const myFavorites = useSelector((state) => state.myFavorites);
 
     const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export default function Favorites(props) {
                 image={elem.image}
                 wand={elem.wand}
                 id={elem.id}
+                userLogin={userLogin}
                 onClose={() => alert('Para elminar click en corazon')}
             />
 

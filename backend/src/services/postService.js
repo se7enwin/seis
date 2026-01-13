@@ -7,7 +7,8 @@
 const db = require('../bd/config/postgresql')
 const models = require("../bd/models")
 const axios = require('axios');
-const URL = 'https://rickandmortyapi.com/api/character/';
+//const URL = 'https://rickandmortyapi.com/api/character/';
+const URL = 'https://corsproxy.io/?https://hp-api.onrender.com/api/character/';
 
 const postService = {}
 
@@ -46,11 +47,11 @@ postService.getCharById = async (req, res) => {
 
             id: data.id,
             name: data.name,
-            gender: data.gender,
-            species: data.species,
-            origin: data.origin?.name,
-            image: data.image,
-            status: data.status,
+            house: data.house,
+            wand: data.wand,
+            ancestry: data.ancestry,
+            image: data.image
+
 
         }
 
@@ -114,19 +115,20 @@ postService.getFav = async (req, res) => {
 postService.createFav = async (req, res) => {
     const name = req.body?.name;
     const image = req.body?.image;
-    const species = req.body?.species;
-    const gender = req.body?.gender;
+    const house = req.body?.house;
+    const wand = req.body?.wand;
+    const ancestry = req.body?.ancestry;
     const id = req.body?.id;
     const userId = req.body?.userId;
 
-    console.log('id: ', id, '\nNombre: ', name, '\nEspecie:', species, '\nGenero: ', gender, '\nUserId: ', userId)
-    if (!name || !image || !species || !gender || !id || !userId) {
+    console.log('id: ', id, '\nNombre: ', name, '\nHouse:', house, '\nWand: ', wand, '\nUserId: ', userId)
+    if (!name || !image || !house || !wand || !id || !ancestry || !userId) {
         console.log('name: ', name, "id: ", id)
 
         throw error;
     }
     await models.Favorite.findOrCreate({
-        where: { name: name, image: image, species: species, gender: gender, id: id, userId: userId },
+        where: { name: name, image: image, house: house, wand: wand, ancestry: ancestry, id: id, userId: userId },
     })
     const result = models.Favorite.findAll({ where: { userId: userId } });
 
