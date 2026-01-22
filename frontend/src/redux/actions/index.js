@@ -1,76 +1,70 @@
-import { ADD_CHARACTER, DELETE_CHARACTER, FILTER, ORDER, CLEAR_FAVORITES, GET_FAVORITE } from "./types";
+import { ADD_CHARACTER, DELETE_CHARACTER, FILTER, ORDER, CLEAR_FAVORITES, GET_FAVORITE, LOGIN_SUCCESS, LOGOUT } from "./types";
 import axios from "axios";
 
-export const getFavorite = (userLogin) => {
+export const getFavorite = () => {
+    return async (dispatch) => {
+        const token = localStorage.getItem("token");
 
-    try {
-        const endpoint = 'http://localhost:3010/harrypotter/fav' // Desarrollo
-        //const endpoint='http://181.31.45.250:3002/rickandmorty/fav' // Produccion
-        //const endpoint = 'https://apirickandmorty.miniweb.ar/rickandmorty/fav' // Produccion
+        const { data } = await axios.get(
+            "http://localhost:3010/harrypotter/fav",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
 
-
-        return async (dispatch) => {
-            const { data } = await axios.get(endpoint, { params: { userLogin: userLogin } });
-            console.log('Se ejecutó getFavorite: ', data)
-            return dispatch({
-                type: GET_FAVORITE,
-                payload: data,
-            })
-
-        }
-
-
-    }
-    catch (error) {
-        console.log(error)
-    }
+        dispatch({
+            type: GET_FAVORITE,
+            payload: data
+        });
+    };
 };
 
 
 export const addFavorite = (character) => {
-    console.log('Desde Add Front, FavoriteId: ', character.id, '& userId: ', character.userId);
+    return async (dispatch) => {
+        const token = localStorage.getItem("token");
 
-    try {
-        const endpoint = 'http://localhost:3010/harrypotter/fav'; // desarrollo
-        // const endpoint = 'http://181.31.45.250:3002/rickandmorty/fav'; // produccion
-        //const endpoint = 'https://apirickandmorty.miniweb.ar/rickandmorty/fav'; // produccion
+        const { data } = await axios.post(
+            "http://localhost:3010/harrypotter/fav",
+            character,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
 
-        return async (dispatch) => {
-            const { data } = await axios.post(endpoint, character)
-            console.log('Se ejecutó addFavorite: ', data)
-            return dispatch({
-                type: ADD_CHARACTER,
-                payload: data,
-            });
-        };
-    }
-    catch (error) {
-        console.log(error)
-    }
+        dispatch({
+            type: ADD_CHARACTER,
+            payload: data
+        });
+    };
 };
 
 
 
 
 export const removeFavorite = (info) => {
-    console.log('Desde Remove Front, FavoriteId: ', info.id, '& userId: ', info.userId);
-    try {
-        const endpoint = 'http://localhost:3010/harrypotter/delfav/'; //desarrollo
-        // const endpoint = 'http://181.31.45.250:3002/rickandmorty/delfav/'; // produccion
-        //const endpoint = 'https://apirickandmorty.miniweb.ar/rickandmorty/delfav/'; // produccion
+    return async (dispatch) => {
+        const token = localStorage.getItem("token");
 
-        return async (dispatch) => {
-            const { data } = await axios.post(endpoint, info)
-            return dispatch({
-                type: DELETE_CHARACTER,
-                payload: data,
-            });
-        };
-    }
+        const { data } = await axios.post(
+            "http://localhost:3010/harrypotter/delfav",
+            info,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
 
-    catch (error) {
-        console.log(error)
-    }
+        dispatch({
+            type: DELETE_CHARACTER,
+            payload: data
+        });
+    };
 };
 
 export const filterCards = (gender) => {
@@ -86,3 +80,13 @@ export const orderCards = (order) => {
 export const clearFavorites = (id) => {
     return { type: CLEAR_FAVORITES, payload: id }
 };
+
+
+export const loginSuccess = (user) => ({
+    type: LOGIN_SUCCESS,
+    payload: user
+});
+
+export const logoutAction = () => ({
+    type: LOGOUT
+});

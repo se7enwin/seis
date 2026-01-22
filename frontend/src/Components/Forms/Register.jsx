@@ -1,56 +1,95 @@
-import React from 'react';
-import { validate } from './validation';
-//import Pantalla from '../../responsive';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from "axios";
+import { Link } from 'react-router-dom';
 
+export default function Register() {
+    const navigate = useNavigate();
 
-export default function Register({ createLogin }) {
-
-    const [userData, setUserData] = React.useState({
-        username: '',
+    const [userData, setUserData] = useState({
+        email: '',
         password: '',
-        age: 0,
+        age: ''
+    });
 
-    })
+    const handleInputChange = (e) => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-    const [errors, setErrors] = React.useState({})
+    async function handleSubmit(e) {
+        e.preventDefault();
 
+        try {
+            await axios.post("http://localhost:3010/harrypotter/register", {
+                email: userData.email,
+                password: userData.password,
+                age: userData.age
+            });
+
+            console.log("Usuario registrado correctamente");
+            navigate('/'); // vuelve al login
+        } catch (error) {
+            console.log(error.response?.data || error.message);
+        }
+    }
 
     return (
-
-
-        <div>
+        <div style={{ maxWidth: '400px', margin: 'auto' }}>
+            <h3 style={{ color: 'violet' }}>Registrarse</h3>
 
             <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={userData.email}
+                        onChange={handleInputChange}
+                    />
+                </div>
 
-                <p style={{ color: 'violet' }}>Registrate</p>
-                <label htmlFor='username' style={{ color: 'yellow' }}>  E-Mail </label>
-                <input type='text' name='username' onChange={handleInputchange} value={userData.username} />
-                <p style={{ color: 'red' }}>{errors.username}</p>
-                <label htmlFor='username' style={{ color: 'yellow' }}>Nací en el</label>
-                <input type='number' name='age' onChange={handleInputchange} value={userData.age} />
-                <label htmlFor='password' style={{ color: 'yellow' }}>Password</label>
-                <input type='password' name='password' onChange={handleInputchange} value={userData.password} />
-                <p style={{ color: 'red' }}>{errors.password}</p>
-                <button type='submit' className="btn btn-success">Enviar Datos / Home</button>
+                <div>
+                    <label>Edad</label>
+                    <input
+                        type="number"
+                        name="age"
+                        value={userData.age}
+                        onChange={handleInputChange}
+                    />
+                </div>
 
+                <div>
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={userData.password}
+                        onChange={handleInputChange}
+                    />
+                </div>
+
+                <button type="submit">Registrarse</button>
             </form>
+
+            <p style={{ marginTop: '10px' }}>
+                ¿Ya tenés cuenta?{" "}
+                <span
+                    style={{ cursor: "pointer", color: "blue" }}
+                    onClick={() => navigate("/")}
+                >
+                    Iniciar sesión
+                </span>
+            </p>
+
+            <p style={{ marginTop: "10px" }}>
+                <Link to="/forgot-password">
+                    Olvidé mi Password
+                </Link>
+            </p>
+
         </div>
-
     );
-    function handleInputchange(e) {
-        setErrors(validate({ ...userData, [e.target.name]: e.target.value }))
-        setUserData({ ...userData, [e.target.name]: e.target.value })
-    }
-
-    function handleSubmit(e) {
-
-        e.preventDefault();
-        { Object.keys(errors).length == 0 && createLogin(userData); }
-        setUserData({
-            username: '',
-            age: 0,
-            password: '',
-        })
-
-    }
 }

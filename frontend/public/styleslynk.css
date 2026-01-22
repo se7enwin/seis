@@ -89,3 +89,41 @@
 #magic {
     color: yellow;
 }
+
+/* Estilos para el menú hamburguesa */
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hamburger-btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-dropdown {
+    position: absolute;
+    bottom: 35px;
+    right: 0;
+    background: #222;
+    padding: 10px;
+    border-radius: 6px;
+    list-style: none;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.menu-dropdown li {
+    margin: 8px 0;
+}
+
+.menu-dropdown a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-dropdown a:hover {
+    text-decoration: underline;
+}

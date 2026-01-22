@@ -1,67 +1,31 @@
-import { useSelector, useDispatch } from 'react-redux';
-import Card from '../Card/Card'
-import { filterCards, orderCards } from '../../redux/actions';
-import { useState } from 'react';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getFavorite } from "../../redux/actions";
+import Card from "../Card/Card";
 
-export default function Favorites(props) {
-    //console.log(props.myFavorites);
-    const { userLogin } = props;
-    console.log('UserLogin Desde Favorites: ', userLogin);
-    const myFavorites = useSelector((state) => state.myFavorites);
-
+export default function Favorites() {
     const dispatch = useDispatch();
-    const [aux, setAux] = useState(false);
+    const myFavorites = useSelector(state => state.myFavorites);
 
-    const handleOrder = (event) => {
+    useEffect(() => {
+        if (!myFavorites.length) {
+            dispatch(getFavorite());
+        }
+    }, [dispatch, myFavorites.length]);
 
-        dispatch(orderCards(event.target.value));
-        setAux(true);
+    if (!myFavorites.length) {
+        return <h3 style={{ textAlign: 'center', color: 'red' }}>No hay favoritos</h3>;
     }
 
-    const handleFilter = (event) => {
-
-        dispatch(filterCards(event.target.value))
-    }
-
-
-    return <div>
-
-        {/* <select onChange={handleOrder}>
-            <option value="A">Ascedente</option>
-            <option value="D">Descendente</option>
-        </select>
-        <select onChange={handleFilter}>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Genderless">Genderless</option>
-            <option value="unknown">unknown</option>
-            <option value='allCharacters'>All Characters</option>
-        </select> */}
-        {myFavorites.map((elem) => (
-
-            <Card
-                name={elem.name}
-                house={elem.house}
-                ancestry={elem.ancestry}
-                image={elem.image}
-                wand={elem.wand}
-                id={elem.id}
-                userLogin={userLogin}
-                onClose={() => alert('Para elminar click en corazon')}
-            />
-
-        ))}
-
-
-    </div>;
+    return (
+        <div>
+            {myFavorites.map(elem => (
+                <Card
+                    key={elem.id}
+                    {...elem}
+                    onClose={() => { }}
+                />
+            ))}
+        </div>
+    );
 }
-// export function mapStateToProps(state){
-// return {
-
-//     myFavorites: state.myFavorites,     // Reemplazamos desde l 21 a l 27 por Hook 'useSelector' . ya no ingresa atr por props sin no por estado
-// };
-// }
-// export default connect(mapStateToProps)(Favorites);
-
-// Borrar
-

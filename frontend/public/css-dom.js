@@ -1,11 +1,19 @@
 // Working with Dom
 
 // Execute Css After Loading Html 
-document.addEventListener('DOMContentLoaded', () => {
+(document.addEventListener('DOMContentLoaded', () => {
+
+
+
+
+
 
     // Css from tag - Render one - Id one 
 
     const one = document.getElementById('one');
+    const two = document.getElementById('two');
+    const three = document.getElementById('three');
+    const four = document.getElementById('four');
     one.setAttribute('style', "display:flex;justify-content:center;align-items:center;width:270px;height:30px;font-size:15px;color:white;background-color:blue;border:1px dotted yellow;border-radius:10%;box-shadow:2px 2px 8px blue;");
 
     // Css from style tag hml - Render two - Id two
@@ -24,10 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hide Id one,two,three,four
 
-    one.setAttribute('style', 'display:none')
-    two.setAttribute('style', 'display:none')
-    three.setAttribute('style', 'display:none')
-    four.setAttribute('style', 'display:none')
+    if (one) one.style.display = 'none';
+    if (two) two.style.display = 'none';
+    if (three) three.style.display = 'none';
+    if (four) four.style.display = 'none';
+
     // Main background
     const body = document.querySelector('body');
     body.id = 'main';
@@ -35,6 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update title
     document.querySelector('title').text = 'Harry Potter';
 
-})
+}))()
 
 

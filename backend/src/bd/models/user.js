@@ -16,10 +16,22 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    age: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+    age: DataTypes.INTEGER,
+    confirmed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    token: DataTypes.STRING,
+    tokenExpires: {
+      type: DataTypes.DATE,
+      allowNull: true
+    }
+
+
+  },
+    {
+      sequelize,
+      modelName: 'User',
+    });
   return User;
 };

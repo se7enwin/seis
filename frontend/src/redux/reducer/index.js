@@ -1,10 +1,18 @@
-import { ADD_CHARACTER, DELETE_CHARACTER, FILTER, ORDER, GET_FAVORITE, CLEAR_FAVORITES } from "../actions/types"
+import { ADD_CHARACTER, DELETE_CHARACTER, FILTER, ORDER, GET_FAVORITE, CLEAR_FAVORITES, LOGIN_SUCCESS, LOGOUT } from "../actions/types"
 
 const initialState = {
 
     myFavorites: [],
     allCharactersFav: [],
+
+    auth: {
+        isAuthenticated: false,
+        user: null
+    }
 }
+
+
+
 
 export default function reducer(state = initialState, { type, payload }) {
 
@@ -84,6 +92,25 @@ export default function reducer(state = initialState, { type, payload }) {
                         ? allCharactersFavCopy.sort((a, b) => a.id - b.id)
                         : allCharactersFavCopy.sort((a, b) => b.id - a.id)
             }
+
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                auth: {
+                    isAuthenticated: true,
+                    user: payload
+                }
+            };
+
+        case LOGOUT:
+            return {
+                ...state,
+                auth: {
+                    isAuthenticated: false,
+                    user: null
+                }
+            };
+
         default:
             return { ...state };
     }
