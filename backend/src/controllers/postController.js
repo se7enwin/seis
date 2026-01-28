@@ -32,16 +32,16 @@ postController.create = async (req, res) => {
         })
 }
 postController.getCharById = async (req, res) => {
-    postService.getCharById(req, res)
-        .then(data => {
-            res.json(data)
-        })
-        .catch(err => {
-            res.status(404).send({
-                message: err.message || 'Some error occurred while retrieving data.'
-            })
-        })
-}
+    try {
+        const character = await postService.getCharById(req.params.id);
+        return res.status(200).json(character);
+    } catch (err) {
+        return res.status(404).json({
+            message: err.message
+        });
+    }
+};
+
 
 
 postController.createUser = async (req, res) => {
@@ -79,42 +79,61 @@ postController.loginUser = async (req, res) => {
 };
 
 
+// postController.getFav = async (req, res) => {
+//     postService.getFav(req, res)
+//         .then(data => {
+//             res.json(data)
+//         })
+//         .catch(err => {
+//             res.status(404).send({
+//                 message: err.message || 'Some error occurred while retrieving data.'
+//             })
+//         })
+// }
+
 postController.getFav = async (req, res) => {
-    postService.getFav(req, res)
-        .then(data => {
-            res.json(data)
-        })
-        .catch(err => {
-            res.status(404).send({
-                message: err.message || 'Some error occurred while retrieving data.'
-            })
-        })
-}
+    try {
+        const data = await postService.getFav(req);
+        res.status(200).json(
+            data.map(f => f.Character) // 👈 si usás include
+        );
+    } catch (err) {
+        console.error('❌ getFav error:', err);
+        res.status(500).json({ message: err.message });
+    }
+};
+
 
 
 
 postController.createFav = async (req, res) => {
-    postService.createFav(req, res)
-        .then(data => {
-            res.json(data)
-        })
-        .catch(err => {
-            res.status(404).send({
-                message: err.message || 'Some error occurred while retrieving data.'
-            })
-        })
-}
+    try {
+        const data = await postService.createFav(req);
+        res.json(data);
+    } catch (err) {
+        console.error("🔥 createFav ERROR:", err.message);
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
+
+
+// .catch(err => {
+//     console.error("🔥 createFav ERROR:", err.message);
+//     res.status(500).json({ error: err.message });
+// });
+
 postController.destroyFav = async (req, res) => {
-    postService.destroyFav(req, res)
+    postService.destroyFav(req)
         .then(data => {
-            res.json(data)
+            res.json(data.map(f => f.Character));
         })
         .catch(err => {
-            res.status(404).send({
-                message: err.message || 'Some error occurred while retrieving data.'
-            })
-        })
-}
+            res.status(500).json({ message: err.message });
+        });
+};
+
 
 
 postController.confirmUser = async (req, res) => {
@@ -166,6 +185,20 @@ postController.resetPassword = async (req, res) => {
 postController.getProfile = async (req, res) => {
     res.json(req.user);
 };
+
+postController.getImage = async (req, res) => {
+    try {
+        const image = await postService.getImage(req.params.id);
+        res.set('Content-Type', 'image/jpeg');
+        return res.send(image);
+    } catch (err) {
+        return res.status(404).end();
+    }
+};
+
+
+
+
 
 
 postController.createAuthor = async (req, res) => {

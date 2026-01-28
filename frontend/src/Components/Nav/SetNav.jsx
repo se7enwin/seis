@@ -7,31 +7,29 @@ function SetNav(props) {
     const [fullList, setFullList] = useState([]);
 
     // Lista de IDs extraída
-    const ids = fullList.map(s => s.id);
+    //const ids = fullList.map(s => s.id);
 
 
     // useEffect para cargar la lista solo una vez
-    useEffect(() => {
-        const getList = async () => {
-            try {
-                const res = await fetch(`${process.env.REACT_APP_API_URL_ALL}`);
-                const data = await res.json();
-                setFullList(data);
-            } catch (error) {
-                console.error('Error fetching characters:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const getList = async () => {
+    //         try {
+    //             const res = await fetch(`${process.env.REACT_APP_API_URL_ALL}`);
+    //             const data = await res.json();
+    //             setFullList(data);
+    //         } catch (error) {
+    //             console.error('Error fetching characters:', error);
+    //         }
+    //     };
 
-        getList();
-    }, []); // Dependencias vacías: se ejecuta solo al montar
+    //     getList();
+    // }, []); // Dependencias vacías: se ejecuta solo al montar
 
     // Handle -  Save data input on state
     function handleSearch(event) {
-        // Retorna el ID real del array de IDs
-        const index = parseInt(event.target.value, 10) - 1;
-        if (index >= 0 && index < ids.length) {
-            setId(ids[index]);
-        }
+
+        setId(event.target.value);
+
     }
 
     return (
@@ -43,7 +41,7 @@ function SetNav(props) {
             <input
                 id='input'
                 type='search'
-                placeholder='Enter Magus - 1 to N'
+                placeholder='Enter Magus - 1 to 22'
                 onChange={handleSearch}
             />
             <button onClick={() => { if (id) props.getApi(id) }}>Search</button>

@@ -3,7 +3,10 @@ import axios from "axios";
 
 export const getFavorite = () => {
     return async (dispatch) => {
+        console.log('🚀 getFavorite ACTION DISPATCHED');
+
         const token = localStorage.getItem("token");
+        console.log('🔑 token:', token);
 
         const { data } = await axios.get(
             "http://localhost:3010/harrypotter/fav",
@@ -13,7 +16,7 @@ export const getFavorite = () => {
                 }
             }
         );
-
+        console.log("Informacion desde action: ", data)
         dispatch({
             type: GET_FAVORITE,
             payload: data
@@ -22,13 +25,38 @@ export const getFavorite = () => {
 };
 
 
-export const addFavorite = (character) => {
+
+
+
+// export const addFavorite = (character) => {
+//     return async (dispatch) => {
+//         const token = localStorage.getItem("token");
+
+//         const { data } = await axios.post(
+//             "http://localhost:3010/harrypotter/fav",
+//             character,
+//             {
+//                 headers: {
+//                     Authorization: `Bearer ${token}`
+//                 }
+//             }
+//         );
+
+//         dispatch({
+//             type: ADD_CHARACTER,
+//             payload: data
+//         });
+//     };
+// };
+
+export const addFavorite = (id) => {
+    console.log('Desde Actions addFavorite - id: ', id)
     return async (dispatch) => {
         const token = localStorage.getItem("token");
 
-        const { data } = await axios.post(
+        await axios.post(
             "http://localhost:3010/harrypotter/fav",
-            character,
+            { characterId: id },
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -36,23 +64,23 @@ export const addFavorite = (character) => {
             }
         );
 
-        dispatch({
-            type: ADD_CHARACTER,
-            payload: data
-        });
+        dispatch(getFavorite()); // ✅ ÚNICA verdad
     };
 };
 
 
 
 
-export const removeFavorite = (info) => {
+
+
+
+export const removeFavorite = (id) => {
     return async (dispatch) => {
         const token = localStorage.getItem("token");
 
-        const { data } = await axios.post(
+        await axios.post(
             "http://localhost:3010/harrypotter/delfav",
-            info,
+            { characterId: id },
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -60,12 +88,12 @@ export const removeFavorite = (info) => {
             }
         );
 
-        dispatch({
-            type: DELETE_CHARACTER,
-            payload: data
-        });
+        // 🔁 sincronización real con DB
+        dispatch(getFavorite());
     };
 };
+
+
 
 export const filterCards = (gender) => {
 

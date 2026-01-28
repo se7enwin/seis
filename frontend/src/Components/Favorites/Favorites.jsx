@@ -3,29 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFavorite } from "../../redux/actions";
 import Card from "../Card/Card";
 
-export default function Favorites() {
+function Favorites(props) {
+    console.log("🟢 Favorites MOUNT");
+
     const dispatch = useDispatch();
     const myFavorites = useSelector(state => state.myFavorites);
 
-    useEffect(() => {
-        if (!myFavorites.length) {
-            dispatch(getFavorite());
-        }
-    }, [dispatch, myFavorites.length]);
 
-    if (!myFavorites.length) {
-        return <h3 style={{ textAlign: 'center', color: 'red' }}>No hay favoritos</h3>;
-    }
+    useEffect(() => {
+        if (!props.userLogin) return;
+        dispatch(getFavorite());
+    }, [dispatch, props.userLogin]);
+
+    console.log("RENDER FAVS", myFavorites);
+    console.log("UserLogin Desde Favorite", props.userLogin);
 
     return (
         <div>
-            {myFavorites.map(elem => (
+            {myFavorites.map(fav => (
                 <Card
-                    key={elem.id}
-                    {...elem}
-                    onClose={() => { }}
+                    key={fav.id}
+                    {...fav}
+                    characterId={fav.id}
+                    userLogin={props.userLogin}
                 />
             ))}
+
+
         </div>
     );
 }
+
+export default Favorites;

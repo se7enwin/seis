@@ -1,52 +1,52 @@
-/**
- * Post routes.
-*/
-
 'use strict'
 
 const express = require('express')
 const router = express.Router()
+
 const controller = require('../controllers/postController')
 const checkAuth = require('../middleware/checkAuth')
-const loginLimiter = require('../middleware/loginLimiter');
+const loginLimiter = require('../middleware/loginLimiter')
 const loginDelay = require('../middleware/loginDelay')
 
+/* =========================
+   PUBLIC ROUTES
+========================= */
 
-
-// Publicas 
-
+// Auth
 router.post('/register', controller.createUser)
-router.post('/login', loginLimiter, loginDelay, controller.loginUser);
+router.post('/login', loginLimiter, loginDelay, controller.loginUser)
 
-// Confirmacion
+// Characters
+router.get('/character/:id', controller.getCharById)
+router.get('/character/:id/image', controller.getImage)
 
-router.get('/confirm/:token', controller.confirmUser);
-router.post('/resend-confirmation', controller.resendConfirmation);
+// Account confirmation
+router.get('/confirm/:token', controller.confirmUser)
+router.post('/resend-confirmation', controller.resendConfirmation)
 
+// Password recovery
+router.post('/forgot-password', controller.forgotPassword)
+router.post('/reset-password/:token', controller.resetPassword)
 
-// Password
+/* =========================
+   PRIVATE ROUTES (JWT)
+========================= */
 
-router.post("/forgot-password", controller.forgotPassword);
-router.post("/reset-password/:token", controller.resetPassword);
+// User
+router.get('/profile', checkAuth, controller.getProfile)
 
-
-// Privadas
-
-router.get('/profile', checkAuth, controller.getProfile);
+// Favorites
 router.get('/fav', checkAuth, controller.getFav)
+//router.get('/fav', (req, res) => {res.status(200).json({ ok: true });});
+//router.get('/fav', controller.getFav)
+
 router.post('/fav', checkAuth, controller.createFav)
-router.post("/delfav", checkAuth, controller.destroyFav)
+//router.post('/fav', controller.createFav)
+
+router.post('/delfav', checkAuth, controller.destroyFav)
+
+// Posts (si siguen en uso)
 router.get('/posts', checkAuth, controller.getAll)
 router.post('/posts', checkAuth, controller.create)
-router.get('/character/:id', checkAuth, controller.getCharById);
-
-
-
-
-
-//router.post('/author', controller.createAuthor)
-//router.post('/book', controller.createBook)
-//router.delete("/fav/:id", controller.destroyFav)
-
 
 module.exports = router

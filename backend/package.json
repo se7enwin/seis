@@ -31,6 +31,7 @@
     },
     "scripts": {
         "postinstall": "npm install --include=dev",
-        "start": "nodemon ./app.js"
+        "start": "nodemon ./app.js",
+        "dev": "nodemon src/index.js"
     }
 }

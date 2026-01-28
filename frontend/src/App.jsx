@@ -16,6 +16,8 @@ import ResetPassword from './Components/ResetPassword/ResetPassword.jsx';
 import { clearFavorites } from './redux/actions';
 import AuthContext from "./context/AuthProvider";
 
+
+
 export default function App() {
     const myFavorites = useSelector((state) => state.myFavorites);
     const dispatch = useDispatch();
@@ -43,12 +45,19 @@ export default function App() {
 
     // 🔍 Buscar personaje
     async function getApi(id) {
-        if (magus.find(ele => ele.id === id)) {
+        if (magus.find(ele => Number(ele.id) === Number(id))) {
             return alert('El personaje ya está seleccionado');
         }
-        const res = await fetch(`${process.env.REACT_APP_API_URL_ONE}${id}`);
+
+        //const res = await fetch(`${process.env.REACT_APP_API_URL_ONE}${id}`);
+        console.log('Id: ', id)
+        //const res = await fetch(`${process.env.REACT_APP_API_URL_LOCAL}${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL_LOCAL}${id}`, {
+            cache: 'no-store'
+        })
+        console.log('Desde Base Local: ', res)
         const data = await res.json();
-        setMagus(old => [...old, ...data]);
+        setMagus(old => [...old, data]);
     }
 
     function onClose(id) {
@@ -97,11 +106,11 @@ export default function App() {
                     </PrivateRoute>
                 } />
 
-                <Route path="/favorites" element={
-                    <PrivateRoute>
-                        <Favorites userLogin={userLogin} />
-                    </PrivateRoute>
-                } />
+                <Route element={<RutaProtegida />}>
+                    <Route path="/favorites" element={<Favorites userLogin={userLogin} />} />
+                </Route>
+
+
 
                 <Route path="/detail/:id" element={
                     <PrivateRoute>

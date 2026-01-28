@@ -1,5 +1,8 @@
 import { ADD_CHARACTER, DELETE_CHARACTER, FILTER, ORDER, GET_FAVORITE, CLEAR_FAVORITES, LOGIN_SUCCESS, LOGOUT } from "../actions/types"
 
+
+
+
 const initialState = {
 
     myFavorites: [],
@@ -14,7 +17,11 @@ const initialState = {
 
 
 
+
+
 export default function reducer(state = initialState, { type, payload }) {
+
+
 
     switch (type) {
 
@@ -26,11 +33,17 @@ export default function reducer(state = initialState, { type, payload }) {
 
         // } ; 
 
+        //Anterior Enero 26
+        // case GET_FAVORITE:
+        //     return {
+        //         ...state,
+        //         myFavorites: payload,
+        //         allCharactersFav: payload
+        //     };
         case GET_FAVORITE:
             return {
                 ...state,
-                myFavorites: payload,
-                allCharactersFav: payload
+                myFavorites: payload
             }
 
         // case ADD_CHARACTER:
@@ -45,13 +58,13 @@ export default function reducer(state = initialState, { type, payload }) {
         //         allCharactersFav: [...state.allCharactersFav, payload]
         //     };
 
-        case ADD_CHARACTER:
-            return {
-                ...state,
-                myFavorites: payload,
-                allCharactersFav: payload
+        // case ADD_CHARACTER:
+        //     return {
+        //         ...state,
+        //         myFavorites: payload,
+        //         allCharactersFav: payload
 
-            };
+        //     };
 
         // case DELETE_CHARACTER:
         //     return {
@@ -65,8 +78,18 @@ export default function reducer(state = initialState, { type, payload }) {
         //         allCharactersFav: state.allCharactersFav.filter(elem => elem.id !== payload)
         //     };
 
+        // case DELETE_CHARACTER:
+        //     return { ...state, myFavorites: payload };
+
         case DELETE_CHARACTER:
-            return { ...state, myFavorites: payload };
+            return {
+                ...state,
+                myFavorites: state.myFavorites.filter(
+                    fav => fav.characterId !== payload
+                ),
+            };
+
+
 
         case CLEAR_FAVORITES:
             return { ...initialState, }

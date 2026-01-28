@@ -7,9 +7,7 @@ const RutaProtegida = () => {
 
     if (cargando) return <p>Cargando...</p>;
 
-    //return auth ? <Outlet /> : <Navigate to="/" />;
-    return auth ? children : <Navigate to="/login" />;
-
+    return auth ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default RutaProtegida;

@@ -1,151 +1,55 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../redux/actions/index';
-import styles from './Card.module.css'
-
-// function Card({ name, image, house, wand, ancestry, id, addFavorite, removeFavorite, myFavorites }) {
-
-//     const [isFav, setFav] = useState(false);
-//     console.log('StarRender - isFav= ' + isFav)
-
-
-//     function handleFavorite() {
-
-//         console.log('Se Activa Boton - isFav= ' + isFav)
-//         console.log('Character = ' + name + ' Id:' + id)
-
-//         if (isFav) {
-
-//             setFav(false);
-//             removeFavorite(id);
-//             console.log('EliminaCharacter')
-//         } else {
-
-//             addFavorite({ name, image, house, wand, ancestry, id, });
-//             setFav(true);
-//             console.log('AgregaCharacter')
-
-//         }
-//         console.log('Finaliza Boton - isFav= ' + isFav)
-
-//     }
-
-//     // eslint-disable-next-line
-//     useEffect(() => {
-//         myFavorites.forEach((fav) => {
-//             if (fav.id === id) {
-//                 setFav(true);
-//                 console.log('DesdeUseEffect - isFav= ' + isFav + ' - Character: ' + name)
-
-//             }
-//         });
-
-//         // eslint-disable-next-line
-//     }, [myFavorites]);
-
-//     console.log('EndRender  - isFav= ' + isFav);
-//     console.log(myFavorites);
-
-
-//     return (
-
-//         <span id='Card'>
-
-//             <Link to={`/detail/${id}`}>
-//                 <p id="name">{name}</p>
-//             </Link>
-//             {isFav ? (
-//                 <button onClick={handleFavorite}>❤️</button>
-//             ) : (
-//                 <button onClick={handleFavorite}>💟</button>
-//             )}
-//             <img id='img' src={image} />
-//             <div id='house'>{house}</div>
-//             <div id='ancestry' display='inline'>{ancestry.charAt(0).toUpperCase() + ancestry.slice(1)}</div>
-//             <hr />
-//             <table id='magic' border='1' cellSpacing="0"><caption>MagicWand</caption><thead><tr><th>Wood</th><th>Core</th><th>Length</th> </tr></thead><tbody><tr><td>{wand.wood.charAt(0).toUpperCase() + wand.wood.slice(1)}</td><td>{wand.core.charAt(0).toUpperCase() + wand.core.slice(1)}</td><td>{wand.length}</td></tr></tbody></table>
-
-//         </span>
-
-
-
-
-//     )
-
-// }
-
-export function mapStateToProps(state) {
-    return {
-        myFavorites: state.myFavorites,
-    };
-}
-export default connect(mapStateToProps, { addFavorite, removeFavorite })(Card);
-
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { addFavorite, removeFavorite } from "../../redux/actions";
+import styles from "./Card.module.css";
 
 function Card({
+    id,
     name,
     image,
     house,
     wand,
     ancestry,
-    id,
     addFavorite,
     removeFavorite,
     myFavorites,
     onClose,
     userLogin
 }) {
+    const [isFav, setIsFav] = useState(false);
 
-    //const isFav = myFavorites.some(fav => fav.id === id);
-    const [isFav, setFav] = useState(false);
-    const userId = userLogin;
-    console.log('StarRender - isFav= ' + isFav)
-    console.log('User Fijo ?: ', userId)
-    //console.log('Ancestry = ' + ancestry)
+    const imageUrl = `http://localhost:3010/harrypotter/character/${id}/image`;
 
-
+    console.log("StarRender - isFav =", isFav);
+    console.log("UserLogin =", userLogin);
 
     function handleFavorite() {
-
-        console.log('Se Activa Boton - isFav= ' + isFav)
-        console.log('Character = ' + name + ' Id:' + id)
+        if (!userLogin) return;
 
         if (isFav) {
-            console.log('Desde isFav removeFavorite - userLogin: ', userId)
-            setFav(false);
-            removeFavorite({ id, userId });
-            console.log('EliminaCharacter')
+            console.log('Se quitará el favorito nro: ', id)
+            removeFavorite(id);
+            setIsFav(false);
         } else {
-
-            console.log('Desde isFav addFavorite - userLogin: ', userId)
-            addFavorite({ name, house, wand, image, ancestry, id, userId }); // aqui agregar id usuario
-            setFav(true);
-            console.log('AgregaCharacter')
-
+            console.log('Se agregará el favorito nro: ', id)
+            addFavorite(id);
+            setIsFav(true);
         }
-        console.log('Finaliza Boton - isFav= ' + isFav)
+    } useEffect(() => {
+        if (!Array.isArray(myFavorites)) return;
 
-    }
-    console.log('EndRender  - isFav= ' + isFav);
-    console.log(myFavorites);
+        const exists = myFavorites.some(
+            fav => fav.id === id || fav.characterId === id
+        );
 
-    // eslint-disable-next-line 
-    // Evita al renderizar white heart
-    useEffect(() => {
-        myFavorites.forEach((fav) => {
-            if (fav.id === id) {
-                setFav(true);
-                console.log('DesdeUseEffect - isFav= ' + isFav + ' - Character: ' + name)
+        setIsFav(exists);
+    }, [myFavorites, id]);
 
-            }
-        });
 
-        // eslint-disable-next-line
-    }, [myFavorites]);
 
     return (
-        <span id='Card'>
+        <span id="Card">
             <Link to={`/detail/${id}`}>
                 <p id="name">{name}</p>
             </Link>
@@ -153,22 +57,58 @@ function Card({
             <button onClick={handleFavorite}>
                 {isFav ? "❤️" : "💟"}
             </button>
-            <button onClick={onClose} className={styles.closeButton}>X</button>
 
-            <img id='img' src={image} />
-            <div id='house'>{house}</div>
-            <div id='ancestry'>
-                {ancestry.charAt(0).toUpperCase() + ancestry.slice(1)}
+            {onClose && (
+                <button onClick={onClose} className={styles.closeButton}>
+                    X
+                </button>
+            )}
+
+            <img id="img" src={imageUrl} alt={name} />
+
+            <div id="house">{house || "Unknown"}</div>
+
+            <div id="ancestry">
+                {ancestry
+                    ? ancestry.charAt(0).toUpperCase() + ancestry.slice(1)
+                    : "Unknown"}
                 <hr />
-                <table id='magic' border='1' cellSpacing="0"><caption>MagicWand</caption><thead><tr><th>Wood</th><th>Core</th><th>Length</th> </tr></thead><tbody><tr><td>{wand.wood.charAt(0).toUpperCase() + wand.wood.slice(1)}</td><td>{wand.core.charAt(0).toUpperCase() + wand.core.slice(1)}</td><td>{wand.length}</td></tr></tbody></table>
 
-
-
-
-
-
-
+                <table id="magic" border="1" cellSpacing="0">
+                    <caption>Magic Wand</caption>
+                    <thead>
+                        <tr>
+                            <th>Wood</th>
+                            <th>Core</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {wand?.wood
+                                    ? wand.wood.charAt(0).toUpperCase() + wand.wood.slice(1)
+                                    : "Unknown"}
+                            </td>
+                            <td>
+                                {wand?.core
+                                    ? wand.core.charAt(0).toUpperCase() + wand.core.slice(1)
+                                    : "Unknown"}
+                            </td>
+                            <td>{wand?.length ?? "Unknown"}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </span>
     );
 }
+
+const mapStateToProps = state => ({
+    myFavorites: state.myFavorites
+});
+
+export default connect(mapStateToProps, {
+    addFavorite,
+    removeFavorite
+})(Card);

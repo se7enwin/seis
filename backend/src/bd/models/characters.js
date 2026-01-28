@@ -3,40 +3,37 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Favorite extends Model {
+  class Characters extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+
+      Characters.hasMany(models.FavoriteDb, {
+        foreignKey: 'characterId'
+      });
+
+
     }
   }
-  Favorite.init({
+  Characters.init({
     name: DataTypes.STRING,
     house: DataTypes.STRING,
     wand: DataTypes.JSONB,
-    image: DataTypes.STRING,
-    ancestry: DataTypes.STRING,
+    image: DataTypes.BLOB,
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, // 🔥 OBLIGATORIO
+      type: DataTypes.INTEGER,
       primaryKey: true,
-    },
-    characterId: {
-      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-
-
+    ancestry: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Favorite',
+    modelName: 'Characters',
+    tableName: 'Characters',      // 🔑 CLAVE
+    freezeTableName: true,        // 🔑 CLAVE
   });
-  return Favorite;
+  return Characters;
 };
