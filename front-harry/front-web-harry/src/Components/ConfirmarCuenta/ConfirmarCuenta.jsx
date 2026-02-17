@@ -10,7 +10,7 @@ export default function ConfirmarCuenta() {
         const confirmar = async () => {
             try {
                 const { data } = await axios.get(
-                    `http://localhost:3010/harrypotter/confirm/${token}`
+                    `https://api-harrypotter.miniweb.ar/harrypotter/confirm/${token}`
                 );
                 setMensaje(data.msg);
             } catch (error) {

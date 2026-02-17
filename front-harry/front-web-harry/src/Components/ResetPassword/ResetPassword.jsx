@@ -60,7 +60,7 @@ const ResetPassword = () => {
             const token = localStorage.getItem("token");
 
             const { data } = await axios.post(
-                "http://localhost:3010/harrypotter/reset-password",
+                "https://api-harrypotter.miniweb.ar/harrypotter/reset-password",
                 { password },
                 {
                     headers: {

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loginSuccess, logoutAction } from "../redux/actions/index";
+import api from "../api/axiosClient";
 
 
 import axios from "axios";
@@ -25,8 +26,8 @@ const AuthProvider = ({ children }) => {
             }
 
             try {
-                const { data } = await axios.get(
-                    "http://localhost:3010/harrypotter/profile",
+                const { data } = await api.get(
+                    "/profile",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -55,12 +56,12 @@ const AuthProvider = ({ children }) => {
 
     // Login
     const login = async ({ email, password }) => {
-        const { data } = await axios.post(
-            "http://localhost:3010/harrypotter/login",
+        const { data } = await api.post(
+            "/login",
             { email, password }
         );
 
-
+        // api.post("/harrypotter/login", data)
 
         localStorage.setItem("token", data.token);
         setAuth(data.user);       // <--- asegúrate que `data.user` existe

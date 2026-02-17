@@ -1,0 +1,33 @@
+{
+    "name": "harry-backend",
+    "version": "1.0.0",
+    "description": "MiniBasicApi",
+    "main": "./app.js",
+    "directories": {
+        "cow": "cow"
+    },
+    "keywords": [],
+    "author": "Mini",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.5.1",
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "cow": "^0.2.3",
+        "dotenv": "^16.4.1",
+        "express": "^4.18.2",
+        "express-rate-limit": "^8.2.1",
+        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.10.0",
+        "nodemailer": "^6.7.2",
+        "pg": "^8.11.3",
+        "pg-hstore": "^2.3.4",
+        "postgres": "^3.4.3",
+        "sequelize": "^6.35.2",
+        "sequelize-cli": "^6.6.2"
+    },
+    "scripts": {
+        "start": "nodemon app.js",
+        "dev": "nodemon src/index.js"
+    }
+}

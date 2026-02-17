@@ -23,7 +23,7 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:3010/harrypotter/register", {
+            await axios.post("https://api-harrypotter.miniweb.ar/harrypotter/register", {
                 email: userData.email,
                 password: userData.password,
                 age: userData.age

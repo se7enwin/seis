@@ -9,7 +9,7 @@ export const getFavorite = () => {
         console.log('🔑 token:', token);
 
         const { data } = await axios.get(
-            "http://localhost:3010/harrypotter/fav",
+            "https://api-harrypotter.miniweb.ar/harrypotter/fav",
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -55,7 +55,7 @@ export const addFavorite = (id) => {
         const token = localStorage.getItem("token");
 
         await axios.post(
-            "http://localhost:3010/harrypotter/fav",
+            "https://api-harrypotter.miniweb.ar/harrypotter/fav",
             { characterId: id },
             {
                 headers: {
@@ -79,7 +79,7 @@ export const removeFavorite = (id) => {
         const token = localStorage.getItem("token");
 
         await axios.post(
-            "http://localhost:3010/harrypotter/delfav",
+            "https://api-harrypotter.miniweb.ar/harrypotter/delfav",
             { characterId: id },
             {
                 headers: {

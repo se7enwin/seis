@@ -17,34 +17,56 @@ function Card({
     onClose,
     userLogin
 }) {
-    const [isFav, setIsFav] = useState(false);
+    //const [isFav, setIsFav] = useState(false);
 
-    const imageUrl = `http://localhost:3010/harrypotter/character/${id}/image`;
+    // En reemplazo de IsFav línea anterior
+    const isFav = myFavorites?.some(
+        fav => fav.id === id
+    );
+    console.log("Se ha encontrado Card en Store Redux ?: ", isFav)
+    console.log("Valor Id: ", id)
+    console.log("Valor CharacterId: ", myFavorites.map(a => a))
 
-    console.log("StarRender - isFav =", isFav);
+    const imageUrl = `https://api-harrypotter.miniweb.ar/harrypotter/character/${id}/image`;
+
+    //console.log("StarRender - isFav =", isFav);
     console.log("UserLogin =", userLogin);
+
+    // function handleFavorite() {
+    //     if (!userLogin) return;
+
+    //     if (isFav) {
+    //         console.log('Se quitará el favorito nro: ', id)
+    //         removeFavorite(id);
+    //         setIsFav(false);
+    //     } else {
+    //         console.log('Se agregará el favorito nro: ', id)
+    //         addFavorite(id);
+    //         setIsFav(true);
+    //     }
+    // } 
 
     function handleFavorite() {
         if (!userLogin) return;
 
         if (isFav) {
-            console.log('Se quitará el favorito nro: ', id)
             removeFavorite(id);
-            setIsFav(false);
         } else {
-            console.log('Se agregará el favorito nro: ', id)
             addFavorite(id);
-            setIsFav(true);
         }
-    } useEffect(() => {
-        if (!Array.isArray(myFavorites)) return;
+    }
 
-        const exists = myFavorites.some(
-            fav => fav.id === id || fav.characterId === id
-        );
 
-        setIsFav(exists);
-    }, [myFavorites, id]);
+
+    // useEffect(() => {
+    //     if (!Array.isArray(myFavorites)) return;
+
+    //     const exists = myFavorites.some(
+    //         fav => fav.id === id || fav.characterId === id
+    //     );
+
+    //     // setIsFav(exists);
+    // }, [myFavorites, id]);
 
 
 
@@ -57,6 +79,7 @@ function Card({
             <button onClick={handleFavorite}>
                 {isFav ? "❤️" : "💟"}
             </button>
+
 
             {onClose && (
                 <button onClick={onClose} className={styles.closeButton}>

@@ -27,7 +27,7 @@ export default function ForgotPassword() {
 
         try {
             await axios.post(
-                "http://localhost:3010/harrypotter/forgot-password",
+                "https://api-harrypotter.miniweb.ar/harrypotter/forgot-password",
                 { email }
             );
 

@@ -6,7 +6,7 @@ export default function Detail(props) {
     const [infoDetail, setInfo] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-    const imageUrl = `http://localhost:3010/harrypotter/character/${id}/image`;
+    const imageUrl = `https://api-harrypotter.miniweb.ar/harrypotter/character/${id}/image`;
 
     console.log('id>', useParams());
 
